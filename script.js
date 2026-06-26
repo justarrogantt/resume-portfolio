@@ -12,12 +12,19 @@ anchorLinks.forEach((link) => {
       return;
     }
 
+    event.preventDefault();
+
+    if (targetId === "#top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.replaceState(null, "", "#top");
+      return;
+    }
+
     const target = document.querySelector(targetId);
     if (!target) {
       return;
     }
 
-    event.preventDefault();
     target.scrollIntoView({ behavior: "smooth", block: "start" });
     history.replaceState(null, "", targetId);
   });
